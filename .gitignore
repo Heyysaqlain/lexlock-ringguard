@@ -32,3 +32,27 @@ dist/
 # Misc
 *.log
 *.tsbuildinfo
+
+# All environment files and secrets
+.env*
+!.env.example
+
+# Local incident and evidence data
+data/*
+!data/.gitkeep
+
+# Local reports
+incident-report.txt
+
+# Coverage and temporary files
+coverage/
+.vercel/
+*.tmp
+
+
+# Keep local incident/evidence records private
+data/*
+!data/.gitkeep
+
+# Keep generated reports local
+incident-report.txt

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { broadcastEvent } from '@/lib/sse-broadcast'
+import { createIncidentFromEvent } from '@/lib/auto-incident'
 
 /**
  * Test endpoint to simulate Ring webhook events for local development.
@@ -73,6 +74,14 @@ export async function POST(request: NextRequest) {
   }
 
   broadcastEvent(event)
+    const incident = await createIncidentFromEvent(event)
+
+  return NextResponse.json({
+    status: 'simulated',
+    event_id: event.event_id,
+    event_type: event.event_type,
+    incident_id: incident.id,
+  })
 
   return NextResponse.json({ 
     status: 'simulated', 
